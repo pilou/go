@@ -53,6 +53,8 @@ jobs:
         with:
           push: true
           tags: ghcr.io/pilou/go:latest
+          build-args: |
+            A_SECRET=${{ secrets.A_SECRET }}
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
