@@ -14,6 +14,7 @@ COPY . .
 
 RUN go mod vendor && go mod verify
 
+RUN go build  -o /go/bin/go main.go
 
 FROM scratch
 
