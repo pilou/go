@@ -35,6 +35,9 @@ jobs:
         with:
           version: latest
   
+      - name: Test with Go
+        run: go test ./...
+
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello, actions!
