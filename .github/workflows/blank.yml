@@ -28,7 +28,9 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      - run: echo A_SECRET ${{ secrets.A_SECRET }}
+      - run: echo A_SECRET "$FOO_BAR"
+        env:
+          FOO_BAR: ${{ secrets.A_SECRET }}
 
       - uses: actions/setup-go@v4
         with:
