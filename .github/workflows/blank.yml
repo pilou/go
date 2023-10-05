@@ -28,10 +28,6 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      - run: echo A_SECRET "$FOO_BAR"
-        env:
-          FOO_BAR: ${{ secrets.A_SECRET }}
-
       - uses: actions/setup-go@v4
         with:
           go-version: '1.21'
@@ -57,6 +53,8 @@ jobs:
         with:
           push: true
           tags: ghcr.io/pilou/go:latest
+          build-args: |
+            A_SECRET=${{ secrets.A_SECRET }}
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
