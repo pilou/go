@@ -1,11 +1,11 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: Preproduction
 
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
-  pull_request:
+  push:
     branches: [ "main" ]
 
   # Allows you to run this workflow manually from the Actions tab
@@ -49,7 +49,7 @@ jobs:
       - name: Build and push Docker images
         uses: docker/build-push-action@v5.0.0        
         with:
-          push: false
+          push: true
           tags: ghcr.io/pilou/go:latest
           build-args: |
             A_SECRET=${{ secrets.A_SECRET }}
