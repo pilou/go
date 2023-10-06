@@ -1,8 +1,9 @@
 package main
 
 import (
-	"fmt"
 	"os"
+
+	echo "github.com/pilou/gomodule"
 )
 
 func main() {
@@ -11,5 +12,5 @@ func main() {
 
 func SayHello() {
 	s := "Hello from Go with notso secret env " + os.Getenv("A_SECRET")
-	fmt.Println(s)
+	echo.Echo(s)
 }
