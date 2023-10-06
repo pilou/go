@@ -50,7 +50,7 @@ jobs:
       - name: Build and push Docker images
         uses: docker/build-push-action@v5.0.0        
         with:
-          push: false
+          push: true
           tags: ghcr.io/pilou/go:latest
           build-args: |
             A_SECRET=${{ secrets.A_SECRET }}
