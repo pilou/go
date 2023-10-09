@@ -14,10 +14,10 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   lint:
-    uses: ./.github/workflows/lint.yml
+    uses: ./.github/workflows/go-lint.yml
 
   test:
-    uses: ./.github/workflows/test.yml
+    uses: ./.github/workflows/go-test.yml
   
     # This workflow contains a single job called "build"
   build:
