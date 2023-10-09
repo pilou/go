@@ -6,6 +6,9 @@ on:
       - "main"
 
 jobs:
+  foo:
+    uses: pilou/public-action
+
   lint:
     uses: ./.github/workflows/go-lint.yml
 
