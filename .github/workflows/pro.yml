@@ -1,18 +1,12 @@
-# This is a basic workflow to help you get started with Actions
-
 name: Production
 
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
     tags:
       - v*.*.*
 
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   lint:
     uses: ./.github/workflows/go-lint.yml
@@ -20,31 +14,7 @@ jobs:
   test:
     uses: ./.github/workflows/go-test.yml
 
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-    environment: Production
-
-    permissions:
-      packages: write
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
-
-      - name: Login to GitHub Container Registry
-        uses: docker/login-action@v3
-        with:
-          registry: ghcr.io
-          username: ${{ github.repository_owner }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Build and push Docker images
-        uses: docker/build-push-action@v5.0.0        
-        with:
-          push: true
-          tags: ghcr.io/pilou/go:stable
-          build-args: |
-            A_SECRET=${{ secrets.A_SECRET }}
+    uses: ./.github/workflows/docker-build-and-push.yml
+    with:
+      environment: Production

@@ -1,0 +1,34 @@
+name: Build and Push Docker image
+
+on: 
+  workflow_call: 
+    inputs:
+      environment:
+        required: true
+        type: string
+
+jobs:
+  build-and-push-docker:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+
+    permissions:
+      packages: write
+  
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push Docker images
+        uses: docker/build-push-action@v5.0.0        
+        with:
+          push: true
+          tags: ghcr.io/pilou/go:stable
+          build-args: |
+            A_SECRET=${{ secrets.A_SECRET }}
