@@ -20,3 +20,4 @@ jobs:
       packages: write
     with:
       environment: Production
+      image-tag: stable
