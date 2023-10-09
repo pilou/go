@@ -7,7 +7,7 @@ on:
 
 jobs:
   foo:
-    uses: pilou/public-action
+    uses: pilou/public-action@main
 
   lint:
     uses: ./.github/workflows/go-lint.yml
