@@ -16,5 +16,7 @@ jobs:
 
   build:
     uses: ./.github/workflows/docker-build-and-push.yml
+    permissions:
+      packages: write
     with:
       environment: Production
