@@ -18,6 +18,7 @@ jobs:
     uses: ./.github/workflows/docker-build-and-push.yml
     permissions:
       packages: write
+    secrets: inherit
     with:
       environment: Production
       image-tag: stable
