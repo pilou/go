@@ -4,17 +4,17 @@ on:
     workflow_call:
 
 jobs:
-    lint:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v3
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
 
-            - uses: actions/setup-go@v4
-              with:
-                go-version: '1.21'
-                cache: false
+      - uses: actions/setup-go@v4
+        with:
+          go-version: '1.21'
+          cache: false
 
-            - name: Run golangci-lint
-              uses: golangci/golangci-lint-action@v3.7.0
-              with:
-                version: latest
+      - name: Run golangci-lint
+        uses: golangci/golangci-lint-action@v3.7.0
+        with:
+          version: latest
