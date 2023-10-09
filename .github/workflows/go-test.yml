@@ -1,0 +1,22 @@
+name:  Test Go code
+
+on: 
+  workflow_call:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Detect Go versions
+        uses: arnested/go-version-action@v1
+        id:  go-version
+
+      - uses: actions/setup-go@v4
+        with:
+          go-version: ${{ steps.go-version.outputs.minimal }}
+          cache: false
+
+      - name: Test with Go
+        run: go test ./...

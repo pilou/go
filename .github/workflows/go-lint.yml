@@ -1,0 +1,24 @@
+name:  Lint Go code
+
+on: 
+  workflow_call:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Detect Go versions
+        uses: arnested/go-version-action@v1
+        id:  go-version
+
+      - uses: actions/setup-go@v4
+        with:
+          go-version: ${{ steps.go-version.outputs.minimal }}
+          cache: false
+
+      - name: Run golangci-lint
+        uses: golangci/golangci-lint-action@v3.7.0
+        with:
+          version: latest
