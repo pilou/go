@@ -7,7 +7,11 @@ on:
 
 jobs:
   foo:
-    uses: pilou/public-action@main
+    runs-on: ubuntu-latest
+    steps:
+      - uses: pilou/public-action@main
+        with:
+          who-to-greet: Mario
 
   lint:
     uses: ./.github/workflows/go-lint.yml
