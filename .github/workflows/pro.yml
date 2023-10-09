@@ -15,6 +15,9 @@ jobs:
     uses: ./.github/workflows/go-test.yml
 
   build:
+    needs:
+      - lint
+      - test
     uses: ./.github/workflows/docker-build-and-push.yml
     permissions:
       packages: write
