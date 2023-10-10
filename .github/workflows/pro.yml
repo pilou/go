@@ -23,3 +23,17 @@ jobs:
     with:
       environment: Production
       image-tag: stable
+
+  deploy:
+    needs: 
+      - build
+    runs-on: ubuntu-latest
+    environment: Production
+    steps:
+      - uses: pilou/rancher1-webhook@main
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          key: ${{ secrets.DEPLOY_KEY }}
+          projectId: ${{ secrets.DEPLOY_PROJECTID }}
+          image: ${{ vars.DEPLOY_IMAGE }}
+          tag: ${{ vars.DEPLOY_TAG }}
