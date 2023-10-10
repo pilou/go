@@ -23,3 +23,17 @@ jobs:
     with:
       environment: PreProduction
       image-tag: latest
+
+  deploy:
+    needs: 
+      - build
+    runs-on: ubuntu-latest
+    environment: PreProduction
+    steps:
+      - uses: pilou/rancher1-webhook@main
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          key: ${{ secrets.DEPLOY_KEY }}
+          projectId: ${{ secrets.DEPLOY_PROJECTID }}
+          image: ${{ vars.DEPLOY_IMAGE }}
+          tag: ${{ vars.DEPLOY_TAG }}
