@@ -12,7 +12,12 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Sync Prometheus Alerts with Grafana Cloud Mimir
-        run: docker run grafana/mimirtool rules load prometheus-alert-config/*.yml
+        run: |
+          docker run \
+            -v prometheus-alert-config:/prometheus-alert-config \
+            grafana/mimirtool \
+            rules load \
+            /prometheus-alert-config/*.yml
         env:
           MIMIR_ADDRESS: ${{ secrets.MIMIR_ADDRESS }}
           MIMIR_TENANT_ID: ${{ secrets.MIMIR_TENANT_ID }}
