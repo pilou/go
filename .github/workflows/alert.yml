@@ -19,5 +19,5 @@ jobs:
             rules load \
             --id=${{ secrets.MIMIR_TENANT_ID }} \
             --address=${{ secrets.MIMIR_ADDRESS }} \
-            --key=${{ secrets.MIMIR_API_KEY }}
+            --key=${{ secrets.MIMIR_API_KEY }} \
             /prometheus-alert-config/test.yml
