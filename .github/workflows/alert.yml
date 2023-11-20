@@ -1,0 +1,23 @@
+name: Sync Prometheus Alerts with Grafana Cloud Mimir
+
+on:
+  pull_request:
+    branches: 
+      - "main"
+
+jobs:
+  mimir:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Sync Prometheus Alerts with Grafana Cloud Mimir
+        run: |
+          docker run \
+            -v ./prometheus-alert-config:/prometheus-alert-config \
+            grafana/mimirtool \
+            rules load \
+            --id=${{ secrets.MIMIR_TENANT_ID }} \
+            --address=${{ secrets.MIMIR_ADDRESS }} \
+            --key=${{ secrets.MIMIR_API_KEY }} \
+            /prometheus-alert-config/*.yml
