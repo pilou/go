@@ -17,8 +17,7 @@ jobs:
             -v ./prometheus-alert-config:/prometheus-alert-config \
             grafana/mimirtool \
             rules load \
+            --id=${{ secrets.MIMIR_TENANT_ID }} \
+            --address=${{ secrets.MIMIR_ADDRESS }} \
+            --key=${{ secrets.MIMIR_API_KEY }}
             /prometheus-alert-config/test.yml
-        env:
-          MIMIR_ADDRESS: ${{ secrets.MIMIR_ADDRESS }}
-          MIMIR_TENANT_ID: ${{ secrets.MIMIR_TENANT_ID }}
-          MIMIR_API_KEY: ${{ secrets.MIMIR_API_KEY }}
