@@ -12,9 +12,8 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Sync Prometheus Alerts with Grafana Cloud Mimir
-        uses: ArthurSens/mimirtool-rules-load-action@v1
-        with:
-          address: ${{ secrets.MIMIR_ADDRESS }}
-          id: ${{ secrets.MIMIR_TENANT_ID }}
-          key: ${{ secrets.MIMIR_API_KEY }}
-          ruleFilesPath: prometheus-alert-config/*.yml
+        run: docker run grafana/mimirtool rules load prometheus-alert-config/*.yml
+        env:
+          MIMIR_ADDRESS: ${{ secrets.MIMIR_ADDRESS }}
+          MIMIR_TENANT_ID: ${{ secrets.MIMIR_TENANT_ID }}
+          MIMIR_API_KEY: ${{ secrets.MIMIR_API_KEY }}
