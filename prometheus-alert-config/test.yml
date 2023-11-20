@@ -1,0 +1,9 @@
+groups:
+- name: test
+  rules:
+  - alert: This is just a test for GH Actions
+    expr: up != 1
+    labels:
+      labelKey: labelValue
+    annotations:
+      annotationsKey: annotationsValue

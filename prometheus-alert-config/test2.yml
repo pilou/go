@@ -1,0 +1,9 @@
+groups:
+- name: test2
+  rules:
+  - alert: This is just a test multiple alert files
+    expr: up != 1
+    labels:
+      labelKey: labelValue
+    annotations:
+      annotationsKey: annotationsValue
