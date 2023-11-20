@@ -17,4 +17,4 @@ jobs:
           address: ${{ secrets.MIMIR_ADDRESS }}
           id: ${{ secrets.MIMIR_TENANT_ID }}
           key: ${{ secrets.MIMIR_API_KEY }}
-          ruleFilesPath: prometheus-alert-config/*.yaml
+          ruleFilesPath: prometheus-alert-config/*.yml
